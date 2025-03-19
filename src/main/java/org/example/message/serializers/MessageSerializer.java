@@ -13,7 +13,7 @@ public class MessageSerializer {
         byte[] recordHeader = new byte[5];
         recordHeader[0] = 0x16; // Handshake record type
         recordHeader[1] = 0x03;
-        recordHeader[2] = 0x03; // TLS 1.2 minor version
+        recordHeader[2] = 0x03;
 //        recordHeader[1] = protocolBytes[0];
 //        recordHeader[2] = protocolBytes[1]; // TLS 1.2 minor version
         recordHeader[3] = (byte) ((handshakeMessage.length >> 8) & 0xFF); // Length (high byte)

@@ -31,10 +31,6 @@ public class Main {
         clientHelloPreparator.afterPrepare();
         ClientHelloSerializer clientHelloSerializer = new ClientHelloSerializer(clientHelloMessage, ProtocolVersion.TLS13);
 
-
-        System.out.println();
-        System.out.println(clientHelloMessage.toString());
-
         byte[] rawMessage = clientHelloSerializer.serialize();
 
         TCPConnection tcpConnection = new TCPConnection("localhost", 4433);
