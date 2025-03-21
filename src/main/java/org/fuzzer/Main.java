@@ -1,25 +1,23 @@
-package org.example;
+package org.fuzzer;
 
 import de.rub.nds.tlsattacker.core.config.Config;
 import de.rub.nds.tlsattacker.core.constants.ProtocolVersion;
 import de.rub.nds.tlsattacker.core.protocol.handler.ClientHelloHandler;
 import de.rub.nds.tlsattacker.core.protocol.message.ClientHelloMessage;
-import de.rub.nds.tlsattacker.core.protocol.message.FinishedMessage;
 import de.rub.nds.tlsattacker.core.protocol.preparator.ClientHelloPreparator;
 import de.rub.nds.tlsattacker.core.protocol.serializer.ClientHelloSerializer;
 import de.rub.nds.tlsattacker.core.state.TlsContext;
-import org.example.connection.TCPConnection;
+import org.fuzzer.connection.TCPConnection;
 
 import java.io.IOException;
 
-import static org.example.message.serializers.MessageSerializer.*;
+import static org.fuzzer.message.serializers.MessageSerializer.*;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
         ClientHelloMessage clientHelloMessage = new ClientHelloMessage();
         clientHelloMessage.setProtocolVersion(ProtocolVersion.TLS13.getValue());
-        System.out.println(clientHelloMessage.toString());
 
         Config config = Config.createConfig();
         TlsContext tlsContext = new TlsContext(config);

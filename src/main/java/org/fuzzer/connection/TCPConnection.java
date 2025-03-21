@@ -1,4 +1,4 @@
-package org.example.connection;
+package org.fuzzer.connection;
 
 import java.io.*;
 import java.net.*;

@@ -1,4 +1,4 @@
-package org.example.message.serializers;
+package org.fuzzer.message.serializers;
 
 import de.rub.nds.tlsattacker.core.constants.ProtocolVersion;
 
