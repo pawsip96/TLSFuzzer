@@ -20,7 +20,6 @@ public class TCPConnectionHandler {
     public void sendData(byte[] data) throws IOException {
         tcpConnection.sendRawData(data);
         LOGGER.debug("Data send: {}", byteToHex(data));
-
     }
 
     public byte[] getServerResponse() throws IOException {
