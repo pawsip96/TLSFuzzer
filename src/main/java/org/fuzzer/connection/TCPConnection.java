@@ -24,16 +24,23 @@ public class TCPConnection {
 
     // Method to receive raw data from the server
     public byte[] receiveRawData() throws IOException {
+        socket.setSoTimeout(1000); // set a timeout of 1 seconds
+
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
         int bytesRead;
 
-        while ((bytesRead = inputStream.read(buffer)) != -1) {
-            byteArrayOutputStream.write(buffer, 0, bytesRead);
+        try {
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                byteArrayOutputStream.write(buffer, 0, bytesRead);
+            }
+        } catch (SocketTimeoutException e) {
+            // Timeout reached, return what we've got
         }
 
         return byteArrayOutputStream.toByteArray();
     }
+
 
     // Close the socket connection
     public void close() throws IOException {

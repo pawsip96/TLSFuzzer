@@ -15,14 +15,12 @@
     <defaultClientSupportedCipherSuites>
         <defaultClientSupportedCipherSuite>TLS_AES_128_GCM_SHA256</defaultClientSupportedCipherSuite>
         <defaultClientSupportedCipherSuite>TLS_AES_256_GCM_SHA384</defaultClientSupportedCipherSuite>
+        <defaultClientSupportedCipherSuite>TLS_CHACHA20_POLY1305_SHA256</defaultClientSupportedCipherSuite>
     </defaultClientSupportedCipherSuites>
     <defaultServerSupportedCipherSuites>
         <defaultServerSupportedCipherSuite>TLS_AES_128_GCM_SHA256</defaultServerSupportedCipherSuite>
         <defaultServerSupportedCipherSuite>TLS_AES_256_GCM_SHA384</defaultServerSupportedCipherSuite>
     </defaultServerSupportedCipherSuites>
-    <defaultClientNamedGroups>
-        <defaultClientNamedGroup>ECDH_X25519</defaultClientNamedGroup>
-    </defaultClientNamedGroups>
     <defaultServerNamedGroups>
         <defaultServerNamedGroup>ECDH_X25519</defaultServerNamedGroup>
     </defaultServerNamedGroups>
@@ -31,7 +29,7 @@
     </supportedVersions>
     <defaultSelectedNamedGroup>ECDH_X25519</defaultSelectedNamedGroup>
     <defaultClientKeyShareNamedGroups>
-        <defaultClientKeyShareNamedGroup>ECDH_X25519</defaultClientKeyShareNamedGroup>
+        <defaultClientKeyShareNamedGroup>SECP256R1</defaultClientKeyShareNamedGroup>
     </defaultClientKeyShareNamedGroups>
     <addECPointFormatExtension>false</addECPointFormatExtension>
     <addEllipticCurveExtension>true</addEllipticCurveExtension>

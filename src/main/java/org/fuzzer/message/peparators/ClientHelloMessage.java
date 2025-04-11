@@ -2,6 +2,8 @@ package org.fuzzer.message.peparators;
 
 import de.rub.nds.tlsattacker.core.config.Config;
 import de.rub.nds.tlsattacker.core.protocol.handler.ClientHelloHandler;
+import de.rub.nds.tlsattacker.core.protocol.message.extension.*;
+import de.rub.nds.tlsattacker.core.protocol.message.extension.keyshare.KeyShareEntry;
 import de.rub.nds.tlsattacker.core.protocol.preparator.ClientHelloPreparator;
 import de.rub.nds.tlsattacker.core.state.TlsContext;
 
@@ -13,7 +15,10 @@ public class ClientHelloMessage extends de.rub.nds.tlsattacker.core.protocol.mes
         super();  // Call parent constructor
         Config config = Config.createConfig();
         this.tlsContext = new TlsContext(config);
-
+        this.addExtension(new SupportedVersionsExtensionMessage());
+        this.addExtension(new SignatureAndHashAlgorithmsExtensionMessage());
+        this.addExtension(new KeyShareExtensionMessage(config));
+        this.addExtension(new EllipticCurvesExtensionMessage());
         prepareMessage();
     }
 
