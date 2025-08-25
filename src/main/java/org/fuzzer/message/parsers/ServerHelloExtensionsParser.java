@@ -56,7 +56,7 @@ public class ServerHelloExtensionsParser {
             pointer += length;
 
             // Create appropriate extension message based on type
-            ExtensionMessage extension = createExtension(type, extensionData);
+            ExtensionMessage extension = createExtension(type, extensionData, length);
             if (extension != null) {
                 extensions.add(extension);
             }
@@ -65,14 +65,14 @@ public class ServerHelloExtensionsParser {
         return extensions;
     }
 
-    private ExtensionMessage createExtension(ExtensionType type, byte[] extensionData) {
+    private ExtensionMessage createExtension(ExtensionType type, byte[] extensionData, int length) {
         switch (type) {
             case KEY_SHARE:
                 return parseKeyShareExtension(extensionData);
             case SERVER_NAME_INDICATION:
                 return parseServerNameIndicationExtension(extensionData);
             case SUPPORTED_VERSIONS:
-                return parseSupportedVersionsExtension(extensionData);
+                return parseSupportedVersionsExtension(extensionData, length);
             // Add more extension types as needed
             default:
 //                // For unknown extensions, create a generic extension message
@@ -87,13 +87,14 @@ public class ServerHelloExtensionsParser {
         KeyShareExtensionMessage extension = new KeyShareExtensionMessage();
         extension.setExtensionType(ExtensionType.KEY_SHARE.getValue());
         extension.setExtensionBytes(extensionData);
+        extension.setExtensionLength(extensionData.length);
 
         int pointer = 0;
 
         // Parse KeyShareList length (2 bytes)
         if (extensionData.length >= 2) {
-            byte[] keyShareListLength = new byte[]{0, 0, extensionData[pointer], extensionData[pointer+1]};
-            extension.setExtensionType(keyShareListLength);
+            byte[] extensionType = new byte[]{0, 0, extensionData[pointer], extensionData[pointer+1]};
+            extension.setExtensionType(extensionType);
             pointer += 2;
 
 
@@ -127,10 +128,13 @@ public class ServerHelloExtensionsParser {
                 extension.getKeyShareList().add(entry);
             }
 
+            extension.setKeyShareListLength(extension.getKeyShareList().size());
+
             // Set the complete keyShareListBytes
             byte[] keyShareListBytes = new byte[pointer - keyShareListStart];
             System.arraycopy(extensionData, keyShareListStart, keyShareListBytes, 0, keyShareListBytes.length);
             extension.setKeyShareListBytes(keyShareListBytes);
+
         }
 
         // Check for retry request mode (TLS 1.3 special case)
@@ -153,10 +157,13 @@ public class ServerHelloExtensionsParser {
         return extension;
     }
 
-    private ExtensionMessage parseSupportedVersionsExtension(byte[] extensionData) {
+    private ExtensionMessage parseSupportedVersionsExtension(byte[] extensionData, int length) {
         SupportedVersionsExtensionMessage extension = new SupportedVersionsExtensionMessage();
         extension.setExtensionType(ExtensionType.SUPPORTED_VERSIONS.getValue());
         extension.setExtensionBytes(extensionData);
+        extension.setExtensionLength(length);
+        extension.setSupportedVersionsLength(length);
+        extension.setSupportedVersions(ExtensionType.SUPPORTED_VERSIONS.getValue());
 
         // Parse supported versions (implementation depends on your needs)
         // ...

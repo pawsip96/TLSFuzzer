@@ -42,7 +42,8 @@ public class ServerHelloMessageParser {
 
         // Parse Protocol Version
         byte[] protocolVersionBytes = new byte[]{messageBytes[pointer], messageBytes[pointer+1]};
-        message.setProtocolVersion(ProtocolVersion.getProtocolVersion(protocolVersionBytes).getValue());
+//        message.setProtocolVersion(ProtocolVersion.getProtocolVersion(protocolVersionBytes).getValue());
+        message.setProtocolVersion(ProtocolVersion.TLS13.getValue());
         pointer += 2;
 
         // Parse Random (GMT Unix Time + Random Bytes)

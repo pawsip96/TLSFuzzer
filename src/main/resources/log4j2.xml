@@ -2,24 +2,44 @@
 <Configuration status="WARN">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-			<ExtendedPatternLayout pattern="%highlight{%d{HH:mm:ss}{GMT+0} [%t] %-5level: %c{1} - %msg%n%throwable}"/>
+            <PatternLayout pattern="%d{HH:mm:ss}{GMT+0} [%t] %-5level: %c{1} - %msg%n%throwable"/>
         </Console>
         <Console name="Info" target="SYSTEM_OUT">
-			<ExtendedPatternLayout pattern="%highlight{%d{HH:mm:ss}{GMT+0} [%t] %-5level: %c{1}} - %msg%n%highlight{%throwable}"/>
+            <PatternLayout pattern="%d{HH:mm:ss}{GMT+0} [%t] %-5level: %c{1} - %msg%n%throwable"/>
         </Console>
         <Console name="Direct" target="SYSTEM_OUT">
-			<ExtendedPatternLayout pattern="%msg%n"/>
+            <PatternLayout pattern="%msg%n"/>
+        </Console>
+        <Console name="DEBUG" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
     </Appenders>
     <Loggers>
-	<Logger name="DirectLogger" level="ALL">
-		<AppenderRef ref="Direct"/>
-	</Logger>
-	<Logger name="com.openpojo.log.LoggerFactory" level="Off">
-		<AppenderRef ref="Direct"/>	
-	</Logger>
-        <Root level="INFO">
+        <!-- Your application packages - set to DEBUG -->
+        <Logger name="org.fuzzer" level="DEBUG" additivity="false">
             <AppenderRef ref="DEBUG"/>
+        </Logger>
+
+        <!-- TLS Attacker packages - set to DEBUG -->
+        <Logger name="de.rub.nds.tlsattacker" level="DEBUG" additivity="false">
+            <AppenderRef ref="DEBUG"/>
+        </Logger>
+
+        <!-- Specific TLS Attacker components that log extension adjustments -->
+        <Logger name="de.rub.nds.tlsattacker.core.protocol.handler.extension" level="DEBUG"/>
+        <Logger name="de.rub.nds.tlsattacker.core.workflow.action" level="DEBUG"/>
+        <Logger name="de.rub.nds.tlsattacker.core.state" level="DEBUG"/>
+
+        <Logger name="DirectLogger" level="ALL">
+            <AppenderRef ref="Direct"/>
+        </Logger>
+
+        <Logger name="com.openpojo.log.LoggerFactory" level="OFF">
+            <AppenderRef ref="Direct"/>
+        </Logger>
+
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
         </Root>
     </Loggers>
 </Configuration>
