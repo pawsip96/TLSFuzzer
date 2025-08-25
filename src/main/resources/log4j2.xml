@@ -20,10 +20,10 @@
             <AppenderRef ref="DEBUG"/>
         </Logger>
 
-        <!-- TLS Attacker packages - set to DEBUG -->
-        <Logger name="de.rub.nds.tlsattacker" level="DEBUG" additivity="false">
-            <AppenderRef ref="DEBUG"/>
-        </Logger>
+<!--        &lt;!&ndash; TLS Attacker packages - set to DEBUG &ndash;&gt;-->
+<!--        <Logger name="de.rub.nds.tlsattacker" level="DEBUG" additivity="false">-->
+<!--            <AppenderRef ref="DEBUG"/>-->
+<!--        </Logger>-->
 
         <!-- Specific TLS Attacker components that log extension adjustments -->
         <Logger name="de.rub.nds.tlsattacker.core.protocol.handler.extension" level="DEBUG"/>

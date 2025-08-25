@@ -1,3 +1,4 @@
+package org.fuzzer.message.serializers;
 
 import de.rub.nds.tlsattacker.core.protocol.message.ClientHelloMessage;
 import de.rub.nds.tlsattacker.core.protocol.serializer.ClientHelloSerializer;

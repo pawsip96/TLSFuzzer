@@ -45,6 +45,9 @@ public class TLSHeaderParser {
     public ProtocolMessageType getContentType() {
         return protocolMessageType;
     }
+    public HandshakeMessageType getHandshakeMessageType(){
+        return handshakeMessageType;
+    }
 
     public ProtocolVersion getVersion() {
         return version;

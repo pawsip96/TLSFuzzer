@@ -1,10 +1,7 @@
 package org.fuzzer;
 
-import org.fuzzer.executor.ClientHelloExecutor;
 import org.fuzzer.executor.TestExecutor;
 import org.fuzzer.message.peparators.ClientHelloMessage;
-
-import java.io.IOException;
 
 public class Main {
 

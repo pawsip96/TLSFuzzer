@@ -1,7 +1,5 @@
 package org.fuzzer.message.serializers;
 
-import de.rub.nds.tlsattacker.core.constants.ProtocolVersion;
-
 public class MessageSerializer {
     public static byte[] serializeMessage(byte[] handshakeMessage) {
         // TLS Record Header structure:
